@@ -66,26 +66,35 @@ int rows = Convert.ToInt32(Console.ReadLine());
 int columns = Convert.ToInt32(Console.ReadLine());
 
 double[,] matrix = new double [rows, columns];
-double b = 0;
-
-for (int i =0; i<matrix.GetLength(0); i++)
+InputArray();
+PrintArray();
+void InputArray()
 {
-    for (int j =0; j<matrix.GetLength(1); j++)
+
+    for (int i =0; i<columns; i++)
     {
-        matrix[i,j] = Convert.ToDouble(new Random().Next(0, 100));
-        Console.Write(matrix[i,j]+"\t");
-    }
-    Console.WriteLine();
-}    
-
-for (int i=1,k=0;i<matrix.GetLength(0);i++) 
-{
-   double summa=0;
-    for (int j=0;j<matrix.GetLength(1);j++) 
+        for (int j =0; j<rows; j++)
         {
-            summa+=matrix[i,j];
+            matrix[i,j] = Convert.ToDouble(new Random().Next(0, 100));
+            Console.Write(matrix[i,j]+"\t");
         }
-    b=summa/columns;
-    Console.WriteLine("Среднее арифметическое столбца "+(i)+" равно: "+b);
-    k++;
-}           
+        Console.WriteLine(); 
+    }    
+}
+
+void PrintArray()
+{
+    double temp = 0;
+    for (int i=0; i < rows; i++) 
+    {
+   
+        for (int j=0;j<columns;j++) 
+        {
+            temp+=(matrix[i,j]);
+        }
+    temp/=columns;
+    Console.WriteLine(Math.Round(temp,1));
+    temp = 0;
+    Console.WriteLine();
+    }
+}               
